@@ -1,5 +1,4 @@
-from art import logo
-from art import vs
+from art import logo, vs
 from game_data import data
 import random
 from replit import clear
@@ -12,16 +11,13 @@ def random_pick():
   data_local.remove(data1)
   
   data2 = random.choice(data_local)
-  data_local.remove(data2)
+  data_local.append(data1)
   return  [data1, data2]
 
 def is_A_grater_than_B(data_list):
   A = data_list[0]['follower_count']
   B = data_list[1]['follower_count']
-  if A > B:
-    return True
-  else:
-    return False
+  return A > B
 
 def output_string_function(picked_data):
   A = picked_data[0]
@@ -31,13 +27,9 @@ def output_string_function(picked_data):
   return [string_A, string_B]
 
 def is_right_guess(two_data, user_choice):
-  is_A_greater = two_data[0]['follower_count'] > two_data[1]['follower_count']
-  if user_choice == 'A' and is_A_greater:
-    return True
-  elif user_choice == 'B' and not is_A_greater:
-    return True
-  else:
-    return False
+    is_A_greater = two_data[0]['follower_count'] > two_data[1]['follower_count']
+    return (user_choice == 'A' and is_A_greater) or (user_choice == 'B' and not is_A_greater)
+
     
 
 while is_user_right:
